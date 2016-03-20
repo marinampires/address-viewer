@@ -122,5 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+FUSION_TABLE_ID = "12a2tPdPOGzY-draRlwRrHtAirL1JC7GUXlqa3e8T"
+APP_KEY = "AIzaSyChheeZwvelzt1iEjLSWlRlMF3UmZI6afU"
+SERVER_KEY = "AIzaSyAgy-mkuzm3tSkLr_cNNm5QlhPcGG5FESQ"
 TOKEN_FUSION_TABLES = "1061866540241-l5urrj9976mjg3ffjmmckirq6k6bc39j.apps.googleusercontent.com"

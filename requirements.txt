@@ -1,2 +1,4 @@
 Django==1.9
 djangorestframework
+google-api-python-client
+httplib2
