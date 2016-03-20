@@ -8,26 +8,46 @@ function initMap() {
     center: myLatLng
   });
 
-  addMarker(myLatLng['lat'], myLatLng['lng'], "Initial");
- 
+  addMarker(myLatLng, "Initial");
+
+  var geocoder = new google.maps.Geocoder;
+  var infowindow = new google.maps.InfoWindow;
+
   //Add listener
   google.maps.event.addListener(map, "click", function (event) {
-      var latitude = event.latLng.lat();
-      var longitude = event.latLng.lng();
-      console.log( latitude + ', ' + longitude );
-      addMarker(latitude, longitude, "teste");
+      geocodeLatLng(geocoder, map, infowindow, event.latLng);
   }); //end addListener
 
 } 
 
 
-function addMarker(lat, lng, title){
-  var myLatLng = {lat: lat, lng: lng};
+// This function is called when the user clicks the UI button requesting
+// a reverse geocode.
+function geocodeLatLng(geocoder, map, infowindow, latlng) {
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+        map.setZoom(11);
+        marker = addMarker(latlng, results[1].formatted_address)
+        infowindow.setContent(results[1].formatted_address);
+        infowindow.open(map, marker);
 
+      } else {
+        window.alert('No results found');
+      }
+    } else {
+      window.alert('Geocoder failed due to: ' + status);
+    }
+  });
+}
+
+
+function addMarker(latlng, title){
   var marker = new google.maps.Marker({
-    position: myLatLng,
+    position: latlng,
     map: map,
     title: title
   });
 
+  return marker;
 }
