@@ -23,16 +23,16 @@ class TestAddress(unittest.TestCase):
             address.save()
 
     def test_valid_address(self):
-        address = Address(address_name="Complete Live Avenue", lat=50, lng=-80.999, place_id="place_id_test")
+        address = Address(address_name="Complete Live Avenue", lat=50, lng=-80.999)
         address.save()
         self.assertEqual(Address.objects.count(), 1)
 
 
     def test_duplicate_place_id(self):
-        address = Address(address_name="Complete Live Avenue", lat=50, lng=-80.999, place_id="place_id_test")
+        address = Address(address_name="Complete Live Avenue", lat=50, lng=-80.999)
         address.save()
 
-        duplicated_address = Address(address_name="Complete Live Avenue", lat=50, lng=-80.999, place_id="place_id_test")
+        duplicated_address = Address(address_name="Complete Live Avenue", lat=50, lng=-80.999,)
         with self.assertRaises(IntegrityError):
             duplicated_address.save()
 

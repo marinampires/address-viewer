@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/map.css' %}" />
 
 	    <script type="text/javascript" src="{% static 'assets/js/map.js' %}"></script>
+	    <script type="text/javascript" src="{% static 'assets/js/jquery-1.12.2.min.js' %}"></script>
 	</head>
 	<body>
 	    <div id="map"></div>
@@ -16,11 +17,12 @@
 	    async defer></script>
 
 		<br>
-		{% for address in addresses%}
-			{{address.address_name}}<br>
-			{{address.lat}}<br>
-			{{address.lng}}<br>
-		{% endfor %}
+		<div class="list-addresses">
+			<h1>Addresses</h1>
+			{% for address in addresses%}
+				{{address.address_name}} - {{address.lat}} - {{address.lng}}<br>
+			{% endfor %}
+		</div>
 	</body>
 
 </html>

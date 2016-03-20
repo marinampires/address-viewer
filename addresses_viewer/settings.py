@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'addresses_viewer'
+    'addresses_viewer',
+    'rest_framework'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -120,3 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+TOKEN_FUSION_TABLES = "1061866540241-l5urrj9976mjg3ffjmmckirq6k6bc39j.apps.googleusercontent.com"

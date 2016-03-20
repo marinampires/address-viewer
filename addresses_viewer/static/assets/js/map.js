@@ -1,7 +1,9 @@
 var map;
-function initMap() {
+var geocoder;
+var infowindow;
 
-  var map = new google.maps.Map(document.getElementById('map'), {
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -22.871638, lng: -43.261632},
     zoom: 11
   });
@@ -15,8 +17,8 @@ function initMap() {
   layer.setMap(map);
 
 
-  var geocoder = new google.maps.Geocoder;
-  var infowindow = new google.maps.InfoWindow;
+  geocoder = new google.maps.Geocoder;
+  infowindow = new google.maps.InfoWindow;
 
   //Add listener
   google.maps.event.addListener(map, "click", function (event) {
@@ -32,12 +34,7 @@ function geocodeLatLng(geocoder, map, infowindow, latlng) {
 
     if (status === google.maps.GeocoderStatus.OK) {
       if (results[1] && validate_coordenates(results[1])) {
-          //save place id identifier  
-          console.log(results[1].place_id);
-          map.setZoom(11);
-          marker = addMarker(latlng, results[1].formatted_address)
-          infowindow.setContent(results[1].formatted_address);
-          infowindow.open(map, marker);
+          save_address(latlng.lat(), latlng.lng(), results[1].formatted_address)
       } 
     } else {
       window.alert('Geocoder failed due to: ' + status);
@@ -61,4 +58,30 @@ function validate_coordenates(results){
     return false;
 
   return true;
+}
+
+function save_address(lat, lng, address_name){
+  data = {"lat": lat.toFixed(6), "lng":lng.toFixed(6), "address_name": address_name}
+  console.log(data);
+  
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:8000/addresses/",
+    data: data,
+    success: function(){
+      html = address_name + " - "+lat+" - "+lng+"<br>";
+      $(".list-addresses").append(html);
+
+      map.setZoom(11);
+      marker = addMarker({"lat": lat, "lng": lng}, address_name)
+      infowindow.setContent(address_name);
+      infowindow.open(map, marker);
+
+    },
+    error: function(response){
+      console.log(response.responseText);
+    },
+    dataType: "json"
+  });
+
 }
