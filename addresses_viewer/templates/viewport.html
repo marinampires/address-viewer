@@ -1,7 +1,26 @@
-<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?zoom=3&center=37.0902%2C-95.7129&key=AIzaSyChheeZwvelzt1iEjLSWlRlMF3UmZI6afU" allowfullscreen></iframe> 
-<br>
-{% for address in addresses%}
-	{{address.address_name}}<br>
-	{{address.lat}}<br>
-	{{address.lng}}<br>
-{% endfor %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	    <meta charset="utf-8">
+	    <title>Adresses Viewer</title>
+	    
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/map.css' %}" />
+
+	    <script type="text/javascript" src="{% static 'assets/js/map.js' %}"></script>
+	</head>
+	<body>
+	    <div id="map"></div>
+	    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChheeZwvelzt1iEjLSWlRlMF3UmZI6afU&callback=initMap"
+	    async defer></script>
+
+		<br>
+		{% for address in addresses%}
+			{{address.address_name}}<br>
+			{{address.lat}}<br>
+			{{address.lng}}<br>
+		{% endfor %}
+	</body>
+
+</html>
