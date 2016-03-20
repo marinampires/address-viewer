@@ -8,11 +8,16 @@ function initMap() {
     center: myLatLng
   });
 
-  var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'Hello World!'
-  });
+  addMarker(myLatLng['lat'], myLatLng['lng'], "Initial");
+ 
+  //Add listener
+  google.maps.event.addListener(map, "click", function (event) {
+      var latitude = event.latLng.lat();
+      var longitude = event.latLng.lng();
+      console.log( latitude + ', ' + longitude );
+      addMarker(latitude, longitude, "teste");
+  }); //end addListener
+
 } 
 
 
