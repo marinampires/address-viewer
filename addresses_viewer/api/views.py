@@ -22,8 +22,3 @@ class AddressesList(APIView):
         Address.objects.all().delete()
         return Response(status=status.HTTP_204_NO_CONTENT)   
 
-
-# @api_view(['DELETE'])
-# def clear_data(request):
-     
-

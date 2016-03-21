@@ -3,5 +3,4 @@ from addresses_viewer.api import views
 
 urlpatterns = [
     url(r'^addresses$', views.AddressesList.as_view()),
-    # url(r'^clear-data$', views.clear_data),
 ]

@@ -119,8 +119,6 @@ function clear_data(){
       }
 
       markers = [];
-
-      setData();
     },
     error: function(response){
       console.log(response.responseText);
