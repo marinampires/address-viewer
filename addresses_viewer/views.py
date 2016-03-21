@@ -12,6 +12,7 @@ def index(request):
     template = loader.get_template('index.html')
     context = {
         'addresses': addresses,
+        'server_url': request.build_absolute_uri()
     }
     return HttpResponse(template.render(context, request))
 

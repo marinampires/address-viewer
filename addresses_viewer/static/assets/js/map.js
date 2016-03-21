@@ -24,7 +24,7 @@ function initMap() {
 function setData() {
   $.ajax({
     type: "GET",
-    url: "http://localhost:8000/get_addresses",
+    url: SERVER_URL + "get_addresses",
     success: getData
   });
 }
@@ -83,7 +83,7 @@ function save_address(lat, lng, address_name){
   
   $.ajax({
     type: "POST",
-    url: "http://localhost:8000/addresses",
+    url: SERVER_URL + "addresses",
     data: data,
     success: function(){
       html = address_name+"<br>";
@@ -107,7 +107,7 @@ function save_address(lat, lng, address_name){
 function clear_data(){
   $.ajax({
     type: "DELETE",
-    url: "http://localhost:8000/clear-data",
+    url: SERVER_URL + "clear-data",
     success: function(){
       $(".list-addresses").html("");
       setData();
