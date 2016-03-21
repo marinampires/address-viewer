@@ -88,7 +88,7 @@ function save_address(lat, lng, address_name){
     url: SERVER_URL + "api/addresses",
     data: data,
     success: function(){
-      html = address_name+"<br>";
+      html = "<li>"+address_name+"</li>";
       $(".list-addresses").append(html);
 
       marker = addMarker({"lat": lat, "lng": lng}, address_name)
@@ -108,7 +108,7 @@ function save_address(lat, lng, address_name){
 function clear_data(){
   $.ajax({
     type: "DELETE",
-    url: SERVER_URL + "api/clear-data",
+    url: SERVER_URL + "api/addresses",
     success: function(){
       $(".list-addresses").html("");
       setData();
