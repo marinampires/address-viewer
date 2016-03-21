@@ -3,6 +3,7 @@ var geocoder;
 var infowindow;
 var layer;
 var table_id;
+var markers = [];
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -69,6 +70,8 @@ function addMarker(latlng, title){
     title: title
   });
 
+  markers.push(marker);
+
   return marker;
 }
 
@@ -111,6 +114,12 @@ function clear_data(){
     url: SERVER_URL + "api/addresses",
     success: function(){
       $(".list-addresses").html("");
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+      }
+
+      markers = [];
+
       setData();
     },
     error: function(response){
