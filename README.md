@@ -6,11 +6,11 @@ Simple page app to find and save addresses
 Have python 3.5
 
 ## Usage
-### Browser
 
+```bash
+	$ ./manage.py runserver 
 ```
-	Open page at: http://localhost:8000/   
-```
+[Open page](http://localhost:8000/)
 
 ## TESTS
 ### Run tests
