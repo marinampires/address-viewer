@@ -5,7 +5,7 @@ from addresses_viewer.models import Address
 from addresses_viewer.api.serializers import AddressSerializer
 
 
-@api_view(['GET', 'POST', 'DELETE'])
+@api_view(['GET', 'POST'])
 def addresses_list(request):
     if request.method == 'GET':
         snippets = Address.objects.all()
@@ -19,7 +19,9 @@ def addresses_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    elif request.method == 'DELETE':
-        Address.objects.all().delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)        
+
+@api_view(['DELETE'])
+def clear_data(request):
+    Address.objects.all().delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)        
 

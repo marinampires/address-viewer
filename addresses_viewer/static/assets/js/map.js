@@ -83,10 +83,10 @@ function save_address(lat, lng, address_name){
   
   $.ajax({
     type: "POST",
-    url: "http://localhost:8000/addresses/",
+    url: "http://localhost:8000/addresses",
     data: data,
     success: function(){
-      html = address_name + " - "+lat+" - "+lng+"<br>";
+      html = address_name+"<br>";
       $(".list-addresses").append(html);
 
       map.setZoom(11);
@@ -101,5 +101,19 @@ function save_address(lat, lng, address_name){
       console.log(response.responseText);
     },
     dataType: "json"
+  });
+}
+
+function clear_data(){
+  $.ajax({
+    type: "DELETE",
+    url: "http://localhost:8000/clear-data",
+    success: function(){
+      $(".list-addresses").html("");
+      setData();
+    },
+    error: function(response){
+      console.log(response.responseText);
+    },
   });
 }

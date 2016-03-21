@@ -18,10 +18,13 @@
 	    async defer></script>
 
 		<br>
-		<div class="list-addresses">
+		<div>
 			<h1>Addresses</h1>
+			<button onclick="clear_data()">Clear Data</button>
+		</div>
+		<div class="list-addresses">
 			{% for address in addresses%}
-				{{address.address_name}} - {{address.lat}} - {{address.lng}}<br>
+				{{address.address_name}}<br>
 			{% endfor %}
 		</div>
 	</body>

@@ -34,13 +34,24 @@ def save(address):
     sql = service.query().sql(sql=sql_insert).execute()
 
 
+def delete():
+    service = _get_service()
+
+    #get the table
+    table_id = get_fusion_table_id()
+
+    sql_delete = "DELETE FROM %s" % table_id
+    sql = service.query().sql(sql=sql_delete).execute()
+
 def get_fusion_table_addresses():
     service = _get_service()
     table_id = get_fusion_table_id()
     sql_list = "select address, lat_long from %s" % table_id
     sql = service.query().sql(sql=sql_list).execute()
 
-    return sql['rows']
+    if "rows" in sql.keys():
+        return sql['rows']
+    return []
 
 
 def get_fusion_table_id():
