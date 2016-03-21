@@ -6,8 +6,7 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.index, name='index'),
-    url(r'^admin/', admin.site.urls),
-    url(r'^get_addresses$', views.get_addresses, name='get_addresses'),
-    url(r'^', include('addresses_viewer.api.urls')),
+    url(r'^addresses$', views.addresses, name='addresses'),
+    url(r'^api/', include('addresses_viewer.api.urls')),
     
 ]

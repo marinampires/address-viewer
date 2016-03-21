@@ -21,10 +21,11 @@ function initMap() {
   setData();
 }
 
+/*Load addresses from fusion tables */
 function setData() {
   $.ajax({
     type: "GET",
-    url: SERVER_URL + "get_addresses",
+    url: SERVER_URL + "addresses",
     success: getData
   });
 }
@@ -78,18 +79,18 @@ function validate_coordenates(results){
   return true;
 }
 
+/* Validate and save address on database */
 function save_address(lat, lng, address_name){
   data = {"lat": lat.toFixed(6), "lng":lng.toFixed(6), "address_name": address_name}
   
   $.ajax({
     type: "POST",
-    url: SERVER_URL + "addresses",
+    url: SERVER_URL + "api/addresses",
     data: data,
     success: function(){
       html = address_name+"<br>";
       $(".list-addresses").append(html);
 
-      map.setZoom(11);
       marker = addMarker({"lat": lat, "lng": lng}, address_name)
       infowindow.setContent(address_name);
       infowindow.open(map, marker);
@@ -107,7 +108,7 @@ function save_address(lat, lng, address_name){
 function clear_data(){
   $.ajax({
     type: "DELETE",
-    url: SERVER_URL + "clear-data",
+    url: SERVER_URL + "api/clear-data",
     success: function(){
       $(".list-addresses").html("");
       setData();

@@ -17,5 +17,5 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def get_addresses(request):
+def addresses(request):
     return JsonResponse({"rows": fusion_tables.all()})

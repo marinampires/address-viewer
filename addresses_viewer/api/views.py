@@ -6,7 +6,7 @@ from addresses_viewer.api.serializers import AddressSerializer
 
 
 @api_view(['GET', 'POST'])
-def addresses_list(request):
+def addresses(request):
     if request.method == 'GET':
         snippets = Address.objects.all()
         serializer = AddressSerializer(snippets, many=True)
