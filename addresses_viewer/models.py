@@ -11,6 +11,7 @@ class Address(models.Model):
     class Meta:
         unique_together = (("lat", "lng"),)
 
+
 @receiver(post_save, sender=Address)
 def save_fusion_table(sender, instance, **kwargs):    
     save(instance)
