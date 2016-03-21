@@ -98,8 +98,6 @@ function save_address(lat, lng, address_name){
       infowindow.setContent(address_name);
       infowindow.open(map, marker);
 
-      setData();
-
     },
     error: function(response){
       console.log(response.responseText);
